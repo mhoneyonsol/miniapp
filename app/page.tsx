@@ -69,7 +69,12 @@ export default function Home() {
       <div className="flex items-center justify-center mb-4">
         <h2 className="text-2xl font-semibold">Tokens Earned: {tokenCount}</h2>
       </div>
-      
+      <button 
+        onClick={handleTapToEarn}
+        className={`tap-to-earn-btn mb-8 ${buttonClicked ? 'button-click' : ''}`}
+      >
+        Tap to Earn 😈
+      </button>
 
       {/* Display the moving and growing emoji */}
       <div
@@ -90,13 +95,6 @@ export default function Home() {
       <Confetti active={isConfettiActive} /> {/* Double confetti */}
 
       <ReferralSystem initData={initData} userId={userId} startParam={startParam} />
-
-      <button 
-        onClick={handleTapToEarn}
-        className={`tap-to-earn-btn mb-8 ${buttonClicked ? 'button-click' : ''}`}
-      >
-        Tap to Earn 😈
-      </button>
     </main>
   );
 }
