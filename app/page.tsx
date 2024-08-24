@@ -71,7 +71,7 @@ export default function Home() {
       </div>
       <button 
         onClick={handleTapToEarn}
-        className={`invite-friends-btn mb-8 ${buttonClicked ? 'button-click' : ''}`}
+        className={`bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded mb-8 ${buttonClicked ? 'button-click' : ''}`}
       >
         Tap to Earn 😈
       </button>
