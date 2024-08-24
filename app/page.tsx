@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { TonConnect } from '@tonconnect/sdk';
 import ReferralSystem from '@/components/ReferralSystem';
 import Confetti from 'react-dom-confetti';
 import './styles.css';
@@ -51,11 +52,24 @@ export default function Home() {
     }
   };
 
-  const handleConnectWallet = () => {
-    // Simulate wallet connection and address retrieval
-    const simulatedAddress = '0x1234...abcd'; // Simulated wallet address (replace with real connection logic)
-    setWalletAddress(simulatedAddress);
-    setWalletConnected(true);
+  const handleConnectWallet = async () => {
+    try {
+      // Initialize TON Connect SDK
+      const tonConnect = new TonConnect();
+      
+      // Connect to TON wallet (this opens the wallet modal to select a wallet)
+      const response = await tonConnect.connectWallet();
+      
+      // Retrieve wallet address from the response
+      const connectedWallet = response?.accounts?.[0]?.address;
+      
+      if (connectedWallet) {
+        setWalletAddress(connectedWallet);
+        setWalletConnected(true);
+      }
+    } catch (error) {
+      console.error('Failed to connect to TON wallet:', error);
+    }
   };
 
   return (
