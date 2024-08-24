@@ -1,13 +1,12 @@
-'use client';
-
-import ReferralSystem from '@/components/ReferralSystem';
 import { useEffect, useState } from 'react';
+import ReferralSystem from '@/components/ReferralSystem';
 import Confetti from 'react-dom-confetti';
 import './styles.css';
 
 export default function Home() {
   const [initData, setInitData] = useState<string>('');
   const [userId, setUserId] = useState<string>('');
+  const [username, setUsername] = useState<string>(''); // New state for username
   const [startParam, setStartParam] = useState<string>('');
   const [tokenCount, setTokenCount] = useState<number>(0);
   const [isConfettiActive, setIsConfettiActive] = useState<boolean>(false);
@@ -23,6 +22,9 @@ export default function Home() {
         setInitData(WebApp.initData);
         setUserId(WebApp.initDataUnsafe.user?.id.toString() || '');
         setStartParam(WebApp.initDataUnsafe.start_param || '');
+
+        // Retrieve username if available
+        setUsername(WebApp.initDataUnsafe.user?.username || ''); // Fetch username
       }
     };
 
@@ -60,6 +62,11 @@ export default function Home() {
       }}
       className="flex min-h-screen flex-col items-center justify-center p-24"
     >
+      {/* Display username */}
+      <div className="absolute top-4 left-4 text-white text-xl font-bold">
+        {username ? `Welcome, @${username}` : 'Welcome!'}
+      </div>
+
       {/* Token count display */}
       <div className="token-count">
         {tokenCount}
