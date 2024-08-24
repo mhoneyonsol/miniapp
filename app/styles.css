@@ -48,12 +48,12 @@ h2.text-2xl.font-semibold {
 .token-count {
     position: absolute;
     top: 20px;
-    /* left: 50%; */
     transform: translateX(-50%);
     font-size: 12rem;
-    color: hsl(0deg 0% 100% / 14%);
+    color: hsla(0, 0%, 100%, .14);
     font-family: unset;
     font-weight: 100;
+    margin-left: 150px;
 }
 
 button.bg-yellow-500.hover\:bg-yellow-600.text-white.font-bold.py-2.px-4.rounded.mb-8 {
