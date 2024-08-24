@@ -60,6 +60,11 @@ export default function Home() {
       }}
       className="flex min-h-screen flex-col items-center justify-center p-24"
     >
+      {/* Token count display */}
+      <div className="token-count">
+        {tokenCount}
+      </div>
+
       <h1 className="text-4xl font-bold mb-8">$MHONEY Telegram mini-app 😈 - Earn on $TON</h1>
       <div className="flex items-center justify-center mb-4">
         <h2 className="text-2xl font-semibold">Tokens Earned: {tokenCount}</h2>
