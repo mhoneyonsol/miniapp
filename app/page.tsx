@@ -29,15 +29,7 @@ export default function Home() {
     saveToCloudStorage('tokenCount', newTokenCount.toString());
   };
 
-  const saveToCloudStorage = async (key, value) => {
-    try {
-      const WebApp = (await import('@twa-dev/sdk')).default;
-      await WebApp.storage.set({ [key]: value });
-      console.log(`Data saved: ${key} = ${value}`);
-    } catch (error) {
-      console.error('Error saving data to cloud storage:', error);
-    }
-  };
+  
 
   const saveToCloudStorage = async (key: string, value: any): Promise<void> => {
   try {
