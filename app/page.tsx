@@ -35,19 +35,16 @@ export default function Home() {
 
     // Trigger button click effect
     setButtonClicked(true);
-    setTimeout(() => setButtonClicked(false), 500); // Match duration of animation
+    setTimeout(() => setButtonClicked(false), 300); // Duration of the animation
 
     // Check if the emoji has reached the top of the page
     if (emojiPosition >= window.innerHeight - 100) {
       // Trigger explosion (confetti) when emoji reaches the top
       setIsConfettiActive(true);
 
-      // Scale up the emoji to cover nearly the entire screen
-      setEmojiSize(200); // Adjust size as needed
-      setEmojiPosition(0); // Set position to top
-
-      // Hide confetti after some time
-      setTimeout(() => setIsConfettiActive(false), 500); // Adjust duration if needed
+      // Reset emoji position and size
+      setEmojiPosition(0);
+      setEmojiSize(20);
     } else {
       // Move emoji up and increase its size
       setEmojiPosition(emojiPosition + 10); // Move up 10px per tap
@@ -63,10 +60,8 @@ export default function Home() {
       }}
       className="flex min-h-screen flex-col items-center justify-center p-24"
     >
-      <h1 className="text-4xl font-bold mb-8 z-10"> {/* Ensure the title is above the emoji */}
-        $MHONEY Telegram mini-app 😈 - Earn on $TON
-      </h1>
-      <div className="flex items-center justify-center mb-4 z-10"> {/* Ensure this div is also above the emoji */}
+      <h1 className="text-4xl font-bold mb-8">$MHONEY Telegram mini-app 😈 - Earn on $TON</h1>
+      <div className="flex items-center justify-center mb-4">
         <h2 className="text-2xl font-semibold">Tokens Earned: {tokenCount}</h2>
       </div>
       <button 
@@ -78,10 +73,13 @@ export default function Home() {
 
       {/* Display the moving and growing emoji */}
       <div
-        className="emoji-large"
         style={{
+          position: 'absolute',
+          bottom: `${emojiPosition}px`,
+          left: '90%',
+          transform: 'translateX(-50%)',
           fontSize: `${emojiSize}px`,
-          transform: `translateX(-50%) scale(${emojiSize / 20})`, // Adjust scaling based on emoji size
+          transition: 'bottom 0.3s, font-size 0.3s', // Smooth transition for movement and size
         }}
       >
         😈
