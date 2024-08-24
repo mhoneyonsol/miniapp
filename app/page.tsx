@@ -57,15 +57,17 @@ export default function Home() {
       // Initialize TON Connect
       const tonConnect = new TonConnect({
         // Define your configuration here
-        // For example:
-        // bridgeUrl: 'https://bridge.ton.org'
+        bridgeUrl: 'https://bridge.ton.org', // Example bridge URL
       });
 
-      // Create an instance of TonConnect to manage connection
-      const session = await tonConnect.createSession();
-      const walletAddress = session.accounts[0]?.address;
+      // Request wallet connection
+      const result = await tonConnect.request({
+        method: 'ton_requestAccounts', // Request accounts method
+      });
 
-      if (walletAddress) {
+      // Check if connection was successful
+      if (result && result.accounts && result.accounts.length > 0) {
+        const walletAddress = result.accounts[0].address;
         setWalletAddress(walletAddress);
         setWalletConnected(true);
       } else {
@@ -79,82 +81,4 @@ export default function Home() {
   return (
     <main
       style={{
-        backgroundImage: "url('https://i.giphy.com/xTiTniuHdUjpOlNo1q.webp')",
-        position: 'relative'
-      }}
-      className="flex min-h-screen flex-col items-center justify-center p-24"
-    >
-      {/* Display username */}
-      <div className="absolute top-4 left-4 text-white text-xl font-bold">
-        {username ? `Welcome, @${username}` : 'Welcome!'}
-      </div>
-
-      {/* Token count display */}
-      <div className="token-count">
-        {tokenCount}
-      </div>
-
-      <h1 className="text-4xl font-bold mb-8">$MHONEY Telegram mini-app 😈 - Earn on $TON</h1>
-      <div className="flex items-center justify-center mb-4">
-        <h2 className="text-2xl font-semibold">Tokens Earned: {tokenCount}</h2>
-      </div>
-
-      <div>
-        <button 
-          onClick={handleTapToEarn}
-          className={`button ${buttonClicked ? 'button-click' : ''}`}
-        >
-          <svg
-            viewBox="0 0 16 16"
-            className="bi bi-lightning-charge-fill"
-            fill="currentColor"
-            height="16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"
-            ></path>
-          </svg>
-          Tap to Earn 😈
-        </button>
-      </div>
-
-      {/* Wallet connection button */}
-      <div className="mt-8">
-        {!walletConnected ? (
-          <button
-            onClick={handleConnectWallet}
-            className="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Connect Telegram Wallet
-          </button>
-        ) : (
-          <div className="text-white">
-            Wallet Connected: {walletAddress}
-          </div>
-        )}
-      </div>
-
-      {/* Display the moving and growing emoji */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: `${emojiPosition}px`,
-          left: '90%',
-          transform: 'translateX(-50%)',
-          fontSize: `${emojiSize}px`,
-          transition: 'bottom 0.3s, font-size 0.3s',
-        }}
-      >
-        😈
-      </div>
-
-      {/* Confetti trigger */}
-      <Confetti active={isConfettiActive} />
-      <Confetti active={isConfettiActive} /> {/* Double confetti */}
-
-      <ReferralSystem initData={initData} userId={userId} startParam={startParam} />
-    </main>
-  );
-}
+        background
