@@ -48,6 +48,13 @@ export default function Home() {
   };
 
   return (
+    <main
+      style={{
+        backgroundImage: "url('https://i.giphy.com/xTiTniuHdUjpOlNo1q.webp')",
+        position: 'relative'
+      }}
+      className="flex min-h-screen flex-col items-center justify-center p-24"
+    >
     <div id="ton-connect"></div>
 
 After this tag add a script for tonConnectUI in <body> part of application page:
@@ -57,14 +64,7 @@ After this tag add a script for tonConnectUI in <body> part of application page:
         manifestUrl: 'https://<YOUR_APP_URL>/tonconnect-manifest.json',
         buttonRootId: 'ton-connect'
     });
-</script><main
-      style={{
-        backgroundImage: "url('https://i.giphy.com/xTiTniuHdUjpOlNo1q.webp')",
-        position: 'relative'
-      }}
-      className="flex min-h-screen flex-col items-center justify-center p-24"
-    >
-    
+</script>
       <div className="absolute top-4 left-4 text-white text-xl font-bold">
         {username ? `Welcome ${username}` : 'Welcome!'}
       </div>
