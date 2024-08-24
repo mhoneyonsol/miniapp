@@ -35,7 +35,7 @@ export default function Home() {
 
     // Trigger button click effect
     setButtonClicked(true);
-    setTimeout(() => setButtonClicked(false), 300); // Duration of the animation
+    setTimeout(() => setButtonClicked(false), 500); // Match the duration of the animation
 
     // Check if the emoji has reached the top of the page
     if (emojiPosition >= window.innerHeight - 100) {
@@ -69,12 +69,27 @@ export default function Home() {
       <div className="flex items-center justify-center mb-4">
         <h2 className="text-2xl font-semibold">Tokens Earned: {tokenCount}</h2>
       </div>
-      <button 
-        onClick={handleTapToEarn}
-        className={`bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded mb-8 ${buttonClicked ? 'button-click' : ''}`}
-      >
-        Tap to Earn 😈
-      </button>
+
+      <div>
+        <button 
+          onClick={handleTapToEarn}
+          className={`button ${buttonClicked ? 'button-click' : ''}`}
+        >
+          <svg
+            viewBox="0 0 16 16"
+            className="bi bi-lightning-charge-fill"
+            fill="currentColor"
+            height="16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"
+            ></path>
+          </svg>
+          Tap to Earn 😈
+        </button>
+      </div>
 
       {/* Display the moving and growing emoji */}
       <div
