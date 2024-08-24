@@ -6,13 +6,14 @@ import Confetti from 'react-dom-confetti';
 import './styles.css';
 
 export default function Home() {
-  const [initData, setInitData] = useState('');
-  const [userId, setUserId] = useState('');
-  const [startParam, setStartParam] = useState('');
-  const [tokenCount, setTokenCount] = useState(0);
-  const [isConfettiActive, setIsConfettiActive] = useState(false);
-  const [emojiPosition, setEmojiPosition] = useState(0);
-  const [emojiSize, setEmojiSize] = useState(20);
+  const [initData, setInitData] = useState<string>('');
+  const [userId, setUserId] = useState<string>('');
+  const [startParam, setStartParam] = useState<string>('');
+  const [tokenCount, setTokenCount] = useState<number>(0);
+  const [isConfettiActive, setIsConfettiActive] = useState<boolean>(false);
+  const [emojiPosition, setEmojiPosition] = useState<number>(0);
+  const [emojiSize, setEmojiSize] = useState<number>(20);
+  const [buttonClicked, setButtonClicked] = useState<boolean>(false);
 
   useEffect(() => {
     const initWebApp = async () => {
@@ -31,6 +32,10 @@ export default function Home() {
   const handleTapToEarn = () => {
     const newTokenCount = tokenCount + 1;
     setTokenCount(newTokenCount);
+
+    // Trigger button click effect
+    setButtonClicked(true);
+    setTimeout(() => setButtonClicked(false), 300); // Duration of the animation
 
     // Check if the emoji has reached the top of the page
     if (emojiPosition >= window.innerHeight - 100) {
