@@ -55,6 +55,16 @@ export default function Home() {
       }}
       className="flex min-h-screen flex-col items-center justify-center p-24"
     >
+    <div id="ton-connect"></div>
+
+After this tag add a script for tonConnectUI in <body> part of application page:
+
+<script>
+    const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+        manifestUrl: 'https://<YOUR_APP_URL>/tonconnect-manifest.json',
+        buttonRootId: 'ton-connect'
+    });
+</script>
       <div className="absolute top-4 left-4 text-white text-xl font-bold">
         {username ? `Welcome ${username}` : 'Welcome!'}
       </div>
