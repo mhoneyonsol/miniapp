@@ -23,8 +23,7 @@ export default function Home() {
   }, [])
 
   return (
-    <main>
-<style>
+    <style>
 main.flex.min-h-screen.flex-col.items-center.justify-center.p-24 {
     background-image: url(https://i.giphy.com/xTiTniuHdUjpOlNo1q.webp);
     background-size: cover;
@@ -45,7 +44,8 @@ button.bg-green-500.hover\:bg-green-700.text-white.font-bold.py-2.px-4.rounded {
     background: #00000042;
 }
 
-</style>
+</style><main
+
 
     style="background-image:url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXB6ODQ0bW85MGJmOXFjYmpoZTY1Y2Ftd2Z1czhtbGI2ZzFiejE5aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/S8MvAa57UlmQZIhI1D/giphy.webp)"
 
