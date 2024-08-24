@@ -72,8 +72,8 @@ button.bg-yellow-500.hover\:bg-yellow-600.text-white.font-bold.py-2.px-4.rounded
 }
 
 
-/* Tap to Earn button styling */
-.tap-to-earn-btn {
+/* Invite Friends button styling */
+.invite-friends-btn {
     --border-radius: 15px;
     --border-width: 4px;
     appearance: none;
@@ -90,7 +90,7 @@ button.bg-yellow-500.hover\:bg-yellow-600.text-white.font-bold.py-2.px-4.rounded
 }
 
 /* Button pseudo-element styling */
-.tap-to-earn-btn::after {
+.invite-friends-btn::after {
     --m-i: linear-gradient(#000, #000);
     --m-o: content-box, padding-box;
     content: "";
@@ -123,7 +123,7 @@ button.bg-yellow-500.hover\:bg-yellow-600.text-white.font-bold.py-2.px-4.rounded
 }
 
 /* Button hover effect */
-.tap-to-earn-btn:hover::after {
+.invite-friends-btn:hover::after {
     animation-play-state: running;
 }
 
@@ -135,12 +135,12 @@ button.bg-yellow-500.hover\:bg-yellow-600.text-white.font-bold.py-2.px-4.rounded
 }
 
 /* Ensure proper box sizing */
-.tap-to-earn-btn,
-.tap-to-earn-btn::after {
+.invite-friends-btn,
+.invite-friends-btn::after {
     box-sizing: border-box;
 }
 
 /* Active button state */
-.tap-to-earn-btn:active {
+.invite-friends-btn:active {
     --border-width: 5px;
 }
