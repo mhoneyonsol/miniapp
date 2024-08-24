@@ -48,7 +48,7 @@ export default function Home() {
     } else {
       // Move emoji up and increase its size
       setEmojiPosition(emojiPosition + 10); // Move up 10px per tap
-      setEmojiSize(emojiSize + 2); // Increase size
+      setEmojiSize(emojiSize + 4); // Increase size
     }
   };
 
