@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import ReferralSystem from '@/components/ReferralSystem';
 import { useEffect, useState } from 'react';
@@ -11,6 +11,8 @@ export default function Home() {
   const [startParam, setStartParam] = useState('');
   const [tokenCount, setTokenCount] = useState(0);
   const [isConfettiActive, setIsConfettiActive] = useState(false);
+  const [emojiPosition, setEmojiPosition] = useState(0);
+  const [emojiSize, setEmojiSize] = useState(20);
 
   useEffect(() => {
     const initWebApp = async () => {
@@ -27,21 +29,29 @@ export default function Home() {
   }, []);
 
   const handleTapToEarn = () => {
-    setTokenCount(tokenCount + 1); // Increase token count by 1
-    setIsConfettiActive(true); // Trigger confetti
+    const newTokenCount = tokenCount + 1;
+    setTokenCount(newTokenCount);
 
-    // Reset confetti state to allow repeated activations
-    setTimeout(() => setIsConfettiActive(false), 500);
+    // Update emoji position and size based on token count
+    setEmojiPosition(emojiPosition + 5); // Move up 5px per tap
+    setEmojiSize(emojiSize + 1.5); // Increase size
+
+    if (newTokenCount >= 100) {
+      // Trigger double confetti when 100 taps are reached
+      setIsConfettiActive(true);
+      setTimeout(() => setIsConfettiActive(false), 1000); // Reset confetti state after 1 second
+    }
   };
 
   return (
     <main
       style={{
-        backgroundImage: "url('https://i.giphy.com/xTiTniuHdUjpOlNo1q.webp')"
+        backgroundImage: "url('https://i.giphy.com/xTiTniuHdUjpOlNo1q.webp')",
+        position: 'relative' // Ensure the emoji is positioned relative to this container
       }}
       className="flex min-h-screen flex-col items-center justify-center p-24"
     >
-      <h1 className="text-4xl font-bold mb-8">$MHONEY TELEGRAM MINI APP - EARN ON $TON</h1>
+      <h1 className="text-4xl font-bold mb-8">$MHONEY Telegram mini-app 😈 - Earn on $TON</h1>
       <div className="flex items-center justify-center mb-4">
         <h2 className="text-2xl font-semibold">Tokens Earned: {tokenCount}</h2>
       </div>
@@ -49,10 +59,31 @@ export default function Home() {
         onClick={handleTapToEarn}
         className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded mb-8"
       >
-        Tap to Earn
+        Tap to Earn 😈
       </button>
+
+      {/* Display the moving and growing emoji */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: `${emojiPosition}px`,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          fontSize: `${emojiSize}px`,
+          transition: 'bottom 0.3s, font-size 0.3s', // Smooth transition for movement and size
+        }}
+      >
+        😈
+      </div>
+
       {/* Confetti trigger */}
-      <Confetti active={isConfettiActive} />
+      {isConfettiActive && (
+        <>
+          <Confetti active={isConfettiActive} />
+          <Confetti active={isConfettiActive} /> {/* Double confetti */}
+        </>
+      )}
+
       <ReferralSystem initData={initData} userId={userId} startParam={startParam} />
     </main>
   );
