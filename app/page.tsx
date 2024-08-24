@@ -39,15 +39,16 @@ export default function Home() {
     }
   };
 
-  const saveToCloudStorage = async (key: string, value: any): Promise<void> => {
-  try {
-    const WebApp = (await import('@twa-dev/sdk')).default;
-    await WebApp.storage.set({ [key]: value });
-  } catch (error) {
-    console.error('Failed to save to cloud storage:', error);
-  }
-};
-
+  const getFromCloudStorage = async (key) => {
+    try {
+      const WebApp = (await import('@twa-dev/sdk')).default;
+      const data = await WebApp.storage.get([key]);
+      console.log(`Data retrieved: ${key} = ${data[key]}`);
+      return data[key];
+    } catch (error) {
+      console.error('Error retrieving data from cloud storage:', error);
+    }
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
