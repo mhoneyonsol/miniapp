@@ -23,7 +23,7 @@ export default function Home() {
   }, [])
 
   return (
-    <main 
+    <main>
 <style>
 main.flex.min-h-screen.flex-col.items-center.justify-center.p-24 {
     background-image: url(https://i.giphy.com/xTiTniuHdUjpOlNo1q.webp);
