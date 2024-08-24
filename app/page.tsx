@@ -27,7 +27,9 @@ export default function Home() {
  <main
 
 
-    style="background-image:url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXB6ODQ0bW85MGJmOXFjYmpoZTY1Y2Ftd2Z1czhtbGI2ZzFiejE5aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/S8MvAa57UlmQZIhI1D/giphy.webp)"
+    style={{
+    backgroundImage: "url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXB6ODQ0bW85MGJmOXFjYmpoZTY1Y2Ftd2Z1czhtbGI2ZzFiejE5aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/S8MvAa57UlmQZIhI1D/giphy.webp')"
+}}
 
 
 
