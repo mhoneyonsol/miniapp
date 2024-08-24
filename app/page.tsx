@@ -31,6 +31,28 @@ export default function Home() {
     initWebApp();
   }, []);
 
+  useEffect(() => {
+    // Create and append the script tag for TonConnectUI
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/tonconnect-ui@latest/dist/tonconnect-ui.min.js';
+    script.async = true;
+    script.onload = () => {
+      // Initialize TonConnectUI after the script is loaded
+      if (window.TON_CONNECT_UI) {
+        new window.TON_CONNECT_UI.TonConnectUI({
+          manifestUrl: 'https://<YOUR_APP_URL>/tonconnect-manifest.json',
+          buttonRootId: 'ton-connect'
+        });
+      }
+    };
+    document.body.appendChild(script);
+
+    return () => {
+      // Clean up the script tag when the component unmounts
+      document.body.removeChild(script);
+    };
+  }, []);
+
   const handleTapToEarn = () => {
     const newTokenCount = tokenCount + 1;
     setTokenCount(newTokenCount);
@@ -48,27 +70,22 @@ export default function Home() {
   };
 
   return (
-    <div id="ton-connect"></div>
-
-After this tag add a script for tonConnectUI in <body> part of application page:
-
-<script>
-    const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-        manifestUrl: 'https://<YOUR_APP_URL>/tonconnect-manifest.json',
-        buttonRootId: 'ton-connect'
-    });
-</script><main
+    <main
       style={{
         backgroundImage: "url('https://i.giphy.com/xTiTniuHdUjpOlNo1q.webp')",
         position: 'relative'
       }}
       className="flex min-h-screen flex-col items-center justify-center p-24"
     >
-    
+      {/* TonConnectUI button container */}
+      <div id="ton-connect"></div>
+
+      {/* Display username */}
       <div className="absolute top-4 left-4 text-white text-xl font-bold">
         {username ? `Welcome ${username}` : 'Welcome!'}
       </div>
 
+      {/* Token count display */}
       <div className="token-count">
         {tokenCount}
       </div>
