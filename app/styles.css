@@ -70,30 +70,30 @@ button.bg-yellow-500.hover\:bg-yellow-600.text-white.font-bold.py-2.px-4.rounded
 
 .button {
   --bezier: cubic-bezier(0.22,0.61,0.36,1);
-    --edge-light: hsla(0, 0%, 50%, .8);
-    --text-light: hsla(0, 0%, 100%, .4);
-    --back-color: 240, 40%;
-    cursor: pointer;
-    padding: .7em 1em;
-    border-radius: .5em;
-    min-height: 2.4em;
-    min-width: 3em;
-    display: flex;
-    align-items: center;
-    gap: .5em;
-    font-size: 18px;
-    letter-spacing: .05em;
-    line-height: 1;
-    font-weight: 700;
-    background: linear-gradient(140deg, hsla(var(--back-color), 50%, 1) min(2em, 20%), hsla(var(--back-color), 50%, .6) min(8em, 100%));
-    color: #e6e6e6;
-    border: 0;
-    box-shadow: inset .4px 1px 4px var(--edge-light);
-    transition: all .1s var(--bezier);
-    bottom: 12%;
-    POSITION: ABSOLUTE;
-    right: 23%;
-    height: 90px;
+  --edge-light: hsla(0, 0%, 50%, .8);
+  --text-light: hsla(0, 0%, 100%, .4);
+  --back-color: 240, 40%;
+  cursor: pointer;
+  padding: .7em 1em;
+  border-radius: .5em;
+  min-height: 2.4em;
+  min-width: 3em;
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  font-size: 18px;
+  letter-spacing: .05em;
+  line-height: 1;
+  font-weight: 700;
+  background: linear-gradient(140deg, hsla(var(--back-color), 50%, 1) min(2em, 20%), hsla(var(--back-color), 50%, .6) min(8em, 100%));
+  color: #e6e6e6;
+  border: 0;
+  box-shadow: inset .4px 1px 4px var(--edge-light);
+  transition: all .1s var(--bezier);
+  bottom: 12%;
+  POSITION: ABSOLUTE;
+  right: 23%;
+  height: 90px;
 }
 
 .button:hover {
@@ -130,4 +130,27 @@ button.bg-yellow-500.hover\:bg-yellow-600.text-white.font-bold.py-2.px-4.rounded
   100% {
     filter: hue-rotate(1turn);
   }
+}
+
+.button-connect {
+  background-color: #1a8b6e;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.button-connect:hover {
+  background-color: #146a5e;
+}
+
+.wallet-address {
+  color: white;
+  font-size: 16px;
+  font-family: monospace;
+  margin-top: 10px;
 }

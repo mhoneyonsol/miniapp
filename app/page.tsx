@@ -15,6 +15,8 @@ export default function Home() {
   const [emojiPosition, setEmojiPosition] = useState<number>(0);
   const [emojiSize, setEmojiSize] = useState<number>(20);
   const [buttonClicked, setButtonClicked] = useState<boolean>(false);
+  const [isWalletConnected, setIsWalletConnected] = useState<boolean>(false);
+  const [walletAddress, setWalletAddress] = useState<string>('');
 
   useEffect(() => {
     const initWebApp = async () => {
@@ -47,6 +49,22 @@ export default function Home() {
     }
   };
 
+  const handleConnectWallet = async () => {
+    if (typeof window !== 'undefined') {
+      const WebApp = (await import('@twa-dev/sdk')).default;
+      try {
+        // Assume there's a method to connect the wallet and get the address
+        const address = await WebApp.connectWallet();
+        setWalletAddress(address);
+        setIsWalletConnected(true);
+      } catch (error) {
+        console.error('Failed to connect wallet:', error);
+      }
+    }
+  };
+
+  const displayAddress = walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : '';
+
   return (
     <main
       style={{
@@ -66,6 +84,20 @@ export default function Home() {
       <h1 className="text-4xl font-bold mb-8">$MHONEY Telegram mini-app 😈 - Earn on $TON</h1>
       <div className="flex items-center justify-center mb-4">
         <h2 className="text-2xl font-semibold">Tokens Earned: {tokenCount}</h2>
+      </div>
+
+      <div className="flex items-center gap-4 mb-4">
+        <button 
+          onClick={handleConnectWallet}
+          className="button-connect"
+        >
+          Connect Wallet
+        </button>
+        {isWalletConnected && (
+          <div className="wallet-address">
+            Address: {displayAddress}
+          </div>
+        )}
       </div>
 
       <div>
