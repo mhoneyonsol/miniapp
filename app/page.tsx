@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import ReferralSystem from '@/components/ReferralSystem';
 import Confetti from 'react-dom-confetti';
@@ -6,7 +8,7 @@ import './styles.css';
 export default function Home() {
   const [initData, setInitData] = useState<string>('');
   const [userId, setUserId] = useState<string>('');
-  const [username, setUsername] = useState<string>(''); // New state for username
+  const [username, setUsername] = useState<string>('');
   const [startParam, setStartParam] = useState<string>('');
   const [tokenCount, setTokenCount] = useState<number>(0);
   const [isConfettiActive, setIsConfettiActive] = useState<boolean>(false);
@@ -22,9 +24,7 @@ export default function Home() {
         setInitData(WebApp.initData);
         setUserId(WebApp.initDataUnsafe.user?.id.toString() || '');
         setStartParam(WebApp.initDataUnsafe.start_param || '');
-
-        // Retrieve username if available
-        setUsername(WebApp.initDataUnsafe.user?.username || ''); // Fetch username
+        setUsername(WebApp.initDataUnsafe.user?.username || '');
       }
     };
 
@@ -34,23 +34,16 @@ export default function Home() {
   const handleTapToEarn = () => {
     const newTokenCount = tokenCount + 1;
     setTokenCount(newTokenCount);
-
-    // Trigger button click effect
     setButtonClicked(true);
-    setTimeout(() => setButtonClicked(false), 500); // Match the duration of the animation
+    setTimeout(() => setButtonClicked(false), 500);
 
-    // Check if the emoji has reached the top of the page
     if (emojiPosition >= window.innerHeight - 100) {
-      // Trigger explosion (confetti) when emoji reaches the top
       setIsConfettiActive(true);
-
-      // Reset emoji position and size
       setEmojiPosition(0);
       setEmojiSize(20);
     } else {
-      // Move emoji up and increase its size
-      setEmojiPosition(emojiPosition + 10); // Move up 10px per tap
-      setEmojiSize(emojiSize + 4); // Increase size
+      setEmojiPosition(emojiPosition + 10);
+      setEmojiSize(emojiSize + 4);
     }
   };
 
@@ -58,16 +51,14 @@ export default function Home() {
     <main
       style={{
         backgroundImage: "url('https://i.giphy.com/xTiTniuHdUjpOlNo1q.webp')",
-        position: 'relative' // Make the main container relative
+        position: 'relative'
       }}
       className="flex min-h-screen flex-col items-center justify-center p-24"
     >
-      {/* Display username */}
       <div className="absolute top-4 left-4 text-white text-xl font-bold">
         {username ? `Welcome, @${username}` : 'Welcome!'}
       </div>
 
-      {/* Token count display */}
       <div className="token-count">
         {tokenCount}
       </div>
@@ -98,7 +89,6 @@ export default function Home() {
         </button>
       </div>
 
-      {/* Display the moving and growing emoji */}
       <div
         style={{
           position: 'absolute',
@@ -106,15 +96,14 @@ export default function Home() {
           left: '90%',
           transform: 'translateX(-50%)',
           fontSize: `${emojiSize}px`,
-          transition: 'bottom 0.3s, font-size 0.3s', // Smooth transition for movement and size
+          transition: 'bottom 0.3s, font-size 0.3s',
         }}
       >
         😈
       </div>
 
-      {/* Confetti trigger */}
       <Confetti active={isConfettiActive} />
-      <Confetti active={isConfettiActive} /> {/* Double confetti */}
+      <Confetti active={isConfettiActive} />
 
       <ReferralSystem initData={initData} userId={userId} startParam={startParam} />
     </main>
