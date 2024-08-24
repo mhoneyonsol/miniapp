@@ -54,22 +54,18 @@ export default function Home() {
 
   const handleConnectWallet = async () => {
     try {
-      // Initialize TON Connect
-      const tonConnect = new TonConnect({
-        // Define your configuration here
-        // For example:
-        // bridgeUrl: 'https://bridge.ton.org'
-      });
-
-      // Create an instance of TonConnect to manage connection
-      const session = await tonConnect.createSession();
-      const walletAddress = session.accounts[0]?.address;
-
-      if (walletAddress) {
-        setWalletAddress(walletAddress);
+      // Initialize TON Connect SDK
+      const tonConnect = new TonConnect();
+      
+      // Connect to TON wallet (this opens the wallet modal to select a wallet)
+      const response = await tonConnect.connectWallet();
+      
+      // Retrieve wallet address from the response
+      const connectedWallet = response?.accounts?.[0]?.address;
+      
+      if (connectedWallet) {
+        setWalletAddress(connectedWallet);
         setWalletConnected(true);
-      } else {
-        console.error('Failed to retrieve wallet address.');
       }
     } catch (error) {
       console.error('Failed to connect to TON wallet:', error);
