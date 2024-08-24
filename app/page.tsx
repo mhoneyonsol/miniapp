@@ -15,6 +15,8 @@ export default function Home() {
   const [emojiPosition, setEmojiPosition] = useState<number>(0);
   const [emojiSize, setEmojiSize] = useState<number>(20);
   const [buttonClicked, setButtonClicked] = useState<boolean>(false);
+  const [walletAddress, setWalletAddress] = useState<string>('');
+  const [isWalletConnected, setIsWalletConnected] = useState<boolean>(false);
 
   useEffect(() => {
     const initWebApp = async () => {
@@ -46,6 +48,25 @@ export default function Home() {
       setEmojiSize(emojiSize + 4);
     }
   };
+
+  const handleConnectWallet = async () => {
+    try {
+      // Initialize Telegram Web Apps SDK
+      const WebApp = (await import('@twa-dev/sdk')).default;
+      WebApp.ready();
+
+      // Example method to get wallet address - this may vary based on SDK updates
+      const walletAddress = WebApp.initDataUnsafe.wallet?.address || '';
+
+      // Set wallet address and connection status
+      setWalletAddress(walletAddress);
+      setIsWalletConnected(true);
+    } catch (error) {
+      console.error('Failed to connect wallet:', error);
+    }
+  };
+
+  const displayAddress = walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : '';
 
   return (
     <main
@@ -88,6 +109,19 @@ export default function Home() {
           Tap to Earn 😈
         </button>
       </div>
+
+      <button 
+        onClick={handleConnectWallet}
+        className="button"
+      >
+        Connect Telegram Wallet
+      </button>
+
+      {isWalletConnected && (
+        <div className="wallet-info">
+          <p>Wallet Address: {displayAddress}</p>
+        </div>
+      )}
 
       <div
         style={{
