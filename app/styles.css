@@ -24,10 +24,10 @@ button.bg-blue-500.hover\:bg-blue-700.text-white.font-bold.py-2.px-4.rounded {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.5); /* Slightly smaller scale for smoother effect */
+    transform: scale(1.05); /* Slightly smaller scale for smoother effect */
   }
   100% {
-    transform: scale(2.15);
+    transform: scale(1.15);
   }
 }
 
