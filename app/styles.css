@@ -17,3 +17,14 @@ button.bg-blue-500.hover\:bg-blue-700.text-white.font-bold.py-2.px-4.rounded {
 button.bg-green-500.hover\:bg-green-700.text-white.font-bold.py-2.px-4.rounded {
     background: #00000042;
 }
+
+button.bg-yellow-500.hover\:bg-yellow-600.text-white.font-bold.py-2.px-4.rounded.mb-8 {
+    background: url(https://static.vecteezy.com/system/resources/thumbnails/012/595/172/small/realistic-white-cloud-png.png);
+    background-size: cover;
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    bottom: -50px;
+    color: black;
+    font-family: monospace;
+}
