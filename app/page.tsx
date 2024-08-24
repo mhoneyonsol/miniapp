@@ -32,14 +32,18 @@ export default function Home() {
     const newTokenCount = tokenCount + 1;
     setTokenCount(newTokenCount);
 
-    // Update emoji position and size based on token count
-    setEmojiPosition(emojiPosition + 5); // Move up 5px per tap
-    setEmojiSize(emojiSize + 1.5); // Increase size
-
-    if (newTokenCount >= 100) {
-      // Trigger double confetti when 100 taps are reached
+    // Check if the emoji has reached the top of the page
+    if (emojiPosition >= window.innerHeight - 100) {
+      // Trigger explosion (confetti) when emoji reaches the top
       setIsConfettiActive(true);
-      setTimeout(() => setIsConfettiActive(false), 1000); // Reset confetti state after 1 second
+
+      // Reset emoji position and size
+      setEmojiPosition(0);
+      setEmojiSize(20);
+    } else {
+      // Move emoji up and increase its size
+      setEmojiPosition(emojiPosition + 10); // Move up 10px per tap
+      setEmojiSize(emojiSize + 2); // Increase size
     }
   };
 
@@ -47,7 +51,7 @@ export default function Home() {
     <main
       style={{
         backgroundImage: "url('https://i.giphy.com/xTiTniuHdUjpOlNo1q.webp')",
-        position: 'relative' // Ensure the emoji is positioned relative to this container
+        position: 'relative' // Make the main container relative
       }}
       className="flex min-h-screen flex-col items-center justify-center p-24"
     >
@@ -77,12 +81,8 @@ export default function Home() {
       </div>
 
       {/* Confetti trigger */}
-      {isConfettiActive && (
-        <>
-          <Confetti active={isConfettiActive} />
-          <Confetti active={isConfettiActive} /> {/* Double confetti */}
-        </>
-      )}
+      <Confetti active={isConfettiActive} />
+      <Confetti active={isConfettiActive} /> {/* Double confetti */}
 
       <ReferralSystem initData={initData} userId={userId} startParam={startParam} />
     </main>
