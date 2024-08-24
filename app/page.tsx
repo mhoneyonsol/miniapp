@@ -56,7 +56,7 @@ export default function Home() {
       className="flex min-h-screen flex-col items-center justify-center p-24"
     >
       <div className="absolute top-4 left-4 text-white text-xl font-bold">
-        {username ? `Welcome, @${username}` : 'Welcome!'}
+        {username ? `Welcome ${username}` : 'Welcome!'}
       </div>
 
       <div className="token-count">
