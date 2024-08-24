@@ -76,7 +76,7 @@ export default function Home() {
         style={{
           position: 'absolute',
           bottom: `${emojiPosition}px`,
-          left: '50%',
+          left: '90%',
           transform: 'translateX(-50%)',
           fontSize: `${emojiSize}px`,
           transition: 'bottom 0.3s, font-size 0.3s', // Smooth transition for movement and size

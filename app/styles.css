@@ -2,6 +2,7 @@ main.flex.min-h-screen.flex-col.items-center.justify-center.p-24 {
     background-image: url(https://i.giphy.com/xTiTniuHdUjpOlNo1q.webp);
     background-size: cover;
     background-position: top;
+    padding: 40px !important;
 }
 
 h1.text-4xl.font-bold.mb-8 {
