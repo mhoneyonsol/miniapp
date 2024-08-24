@@ -3,8 +3,6 @@
 import { useEffect, useState } from 'react';
 import ReferralSystem from '@/components/ReferralSystem';
 import Confetti from 'react-dom-confetti';
-import Web3 from 'web3';
-import WalletConnectProvider from '@walletconnect/web3-provider';
 import './styles.css';
 
 export default function Home() {
@@ -17,8 +15,6 @@ export default function Home() {
   const [emojiPosition, setEmojiPosition] = useState<number>(0);
   const [emojiSize, setEmojiSize] = useState<number>(20);
   const [buttonClicked, setButtonClicked] = useState<boolean>(false);
-  const [walletAddress, setWalletAddress] = useState<string>('');
-  const [isWalletConnected, setIsWalletConnected] = useState<boolean>(false);
 
   useEffect(() => {
     const initWebApp = async () => {
@@ -50,32 +46,6 @@ export default function Home() {
       setEmojiSize(emojiSize + 4);
     }
   };
-
-  const handleConnectWallet = async () => {
-    try {
-      const provider = new WalletConnectProvider({
-        infuraId: 'YOUR_INFURA_ID', // Replace with your Infura ID or RPC URL
-      });
-
-      // Enable the provider
-      await provider.enable();
-
-      // Create a Web3 instance
-      const web3 = new Web3(provider);
-
-      // Get user accounts
-      const accounts = await web3.eth.getAccounts();
-      const address = accounts[0];
-
-      // Set wallet address and connection status
-      setWalletAddress(address);
-      setIsWalletConnected(true);
-    } catch (error) {
-      console.error('Failed to connect wallet:', error);
-    }
-  };
-
-  const displayAddress = walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : '';
 
   return (
     <main
@@ -118,19 +88,6 @@ export default function Home() {
           Tap to Earn 😈
         </button>
       </div>
-
-      <button 
-        onClick={handleConnectWallet}
-        className="button"
-      >
-        Connect TON Wallet
-      </button>
-
-      {isWalletConnected && (
-        <div className="wallet-info">
-          <p>Wallet Address: {displayAddress}</p>
-        </div>
-      )}
 
       <div
         style={{
