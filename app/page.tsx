@@ -23,7 +23,21 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+    <main 
+<style>
+main.flex.min-h-screen.flex-col.items-center.justify-center.p-24 {
+    background-image: url(https://i.giphy.com/xTiTniuHdUjpOlNo1q.webp);
+    background-size: cover;
+    background-position: top;
+}
+
+</style>
+
+    style="background-image:url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXB6ODQ0bW85MGJmOXFjYmpoZTY1Y2Ftd2Z1czhtbGI2ZzFiejE5aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/S8MvAa57UlmQZIhI1D/giphy.webp)"
+
+
+
+    className="flex min-h-screen flex-col items-center justify-center p-24">
       <h1 className="text-4xl font-bold mb-8">$MHONEY TELEGRAM MINI APP - EARN ON $TON</h1>
       <ReferralSystem initData={initData} userId={userId} startParam={startParam} />
     </main>
