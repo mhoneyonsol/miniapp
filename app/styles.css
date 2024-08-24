@@ -50,7 +50,7 @@ h2.text-2xl.font-semibold {
     top: 20px;
     /* left: 50%; */
     transform: translateX(-50%);
-    font-size: 8rem;
+    font-size: 12rem;
     color: hsl(0deg 0% 100% / 14%);
     font-family: unset;
     font-weight: 100;
