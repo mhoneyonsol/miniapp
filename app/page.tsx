@@ -15,8 +15,6 @@ export default function Home() {
   const [emojiPosition, setEmojiPosition] = useState<number>(0);
   const [emojiSize, setEmojiSize] = useState<number>(20);
   const [buttonClicked, setButtonClicked] = useState<boolean>(false);
-  const [walletAddress, setWalletAddress] = useState<string>(''); // State for wallet address
-  const [walletConnected, setWalletConnected] = useState<boolean>(false); // State to track wallet connection
 
   useEffect(() => {
     const initWebApp = async () => {
@@ -36,8 +34,6 @@ export default function Home() {
   const handleTapToEarn = () => {
     const newTokenCount = tokenCount + 1;
     setTokenCount(newTokenCount);
-
-    // Trigger button click effect
     setButtonClicked(true);
     setTimeout(() => setButtonClicked(false), 500);
 
@@ -51,13 +47,6 @@ export default function Home() {
     }
   };
 
-  const handleConnectWallet = () => {
-    // Simulate wallet connection and address retrieval
-    const simulatedAddress = '0x1234...abcd'; // Simulated wallet address (replace with real connection logic)
-    setWalletAddress(simulatedAddress);
-    setWalletConnected(true);
-  };
-
   return (
     <main
       style={{
@@ -66,12 +55,10 @@ export default function Home() {
       }}
       className="flex min-h-screen flex-col items-center justify-center p-24"
     >
-      {/* Display username */}
       <div className="absolute top-4 left-4 text-white text-xl font-bold">
-        {username ? `Welcome, @${username}` : 'Welcome!'}
+        {username ? `Welcome ${username}` : 'Welcome!'}
       </div>
 
-      {/* Token count display */}
       <div className="token-count">
         {tokenCount}
       </div>
@@ -102,23 +89,6 @@ export default function Home() {
         </button>
       </div>
 
-      {/* Wallet connection button */}
-      <div className="mt-8">
-        {!walletConnected ? (
-          <button
-            onClick={handleConnectWallet}
-            className="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Connect Telegram Wallet
-          </button>
-        ) : (
-          <div className="text-white">
-            Wallet Connected: {walletAddress}
-          </div>
-        )}
-      </div>
-
-      {/* Display the moving and growing emoji */}
       <div
         style={{
           position: 'absolute',
@@ -132,9 +102,8 @@ export default function Home() {
         😈
       </div>
 
-      {/* Confetti trigger */}
       <Confetti active={isConfettiActive} />
-      <Confetti active={isConfettiActive} /> {/* Double confetti */}
+      <Confetti active={isConfettiActive} />
 
       <ReferralSystem initData={initData} userId={userId} startParam={startParam} />
     </main>
